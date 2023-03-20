@@ -1,7 +1,7 @@
 <script>
 // @ts-nocheck
     import { io } from "socket.io-client";
-    const socket = io("http://localhost:3000/");
+    const socket = io("http://18.222.193.19:3000/");
     // http://localhost:3000/
 
     // http://18.222.193.19:3000/
@@ -40,7 +40,7 @@
             // formData.append('attachment', attachment);
             
             
-            const response = await axios.post('http://localhost:3000/upload', formData);
+            const response = await axios.post('http://18.222.193.19:3000/upload', formData);
             console.log(response.data); 
 
         } catch (error) {
@@ -81,7 +81,7 @@
 </script>
 
 <section on:contextmenu|preventDefault={onRightClick}>
-    <h1>Mailer</h1>
+    <h2>Mailer</h2>
     
     <div class="container">
         <div class="form-container container-child">
@@ -124,10 +124,12 @@
         <div class="results-container container-child">
             <div class="results">
                 <h3>Success</h3>
+                <p>Total number of recipients: {successRecipient.length}</p>
                 <div class="emails">
-                    {#each successRecipient as email}
-                        <p>{email}</p>
-                    {/each}
+                   
+                    {#each successRecipient as email, index}
+                    <p>{index + 1}. {email}</p>
+                {/each}
                 </div>
             </div>
         </div>
@@ -138,17 +140,20 @@
 <style>
     :global(body) {
         font-family: sans-serif;
-        background-color: #333;
+        background-color: #6a4d4d;
         color: white;
         margin: 0 auto;
+        justify-content: center;
+        margin-left: 180px;
     }
-    :global(h1){
+    :global(h2){
         text-align: center;
-        font-size: 64px;
+        font-size: 34px;
     }
     :global(h3){
         margin-bottom: 20px;
     }
+   
     .container {
         width: 1100px;
         display: flex;
@@ -174,7 +179,10 @@
         font-size: large;
     }
     .emails{
-        overflow: auto;
+        overflow-y: scroll;
+        background-color: rgb(133, 164, 164);
+        height: 70vh;
+        width: 30vw;
     }
 
     .btn {
