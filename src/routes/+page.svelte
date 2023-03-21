@@ -1,7 +1,7 @@
 <script>
 // @ts-nocheck
     import { io } from "socket.io-client";
-    const socket = io("http://18.222.193.19:3000/");
+    const socket = io("http://localhost:3000/");
     // http://localhost:3000/
 
     // http://18.222.193.19:3000/
@@ -40,7 +40,7 @@
             // formData.append('attachment', attachment);
             
             
-            const response = await axios.post('http://18.222.193.19:3000/upload', formData);
+            const response = await axios.post('http://localhost:3000/upload', formData);
             console.log(response.data); 
 
         } catch (error) {
